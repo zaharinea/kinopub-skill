@@ -94,6 +94,29 @@ class TestTokens(unittest.TestCase):
         with self.assertRaises(k.KPError) as e:
             c.folders()
         self.assertEqual(e.exception.code, 3)
+        self.assertEqual(e.exception.extra["api_error"], "invalid_refresh_token")
+
+    def test_cli_error_message_not_overwritten(self):
+        import contextlib
+        import io
+
+        class Boom(k.Client):
+            def __init__(self, *a):
+                pass
+
+            def whoami(self):
+                raise k.KPError("нужен новый вход", 3, error="x", api_error="invalid_refresh_token")
+
+        err = io.StringIO()
+        orig = k.Client
+        k.Client = Boom
+        try:
+            with contextlib.redirect_stderr(err):
+                code = k.main(["whoami"])
+        finally:
+            k.Client = orig
+        self.assertEqual(code, 3)
+        self.assertIn('"error": "нужен новый вход"', err.getvalue())
 
 
 class TestBookmarks(unittest.TestCase):

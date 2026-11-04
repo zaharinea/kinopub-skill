@@ -1,6 +1,6 @@
 {
   "name": "kinopub",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Неофициальный скилл для закладок Кинопаба (kino.watch, kino.pub) через API v1: папки, добавить, убрать или перенести фильм, поиск, «Буду смотреть». Вход по коду на kino.watch/device.",
   "author": {
     "name": "zaharinea",

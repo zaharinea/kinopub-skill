@@ -19,7 +19,7 @@ import time
 from pathlib import Path
 from urllib import error, parse, request
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 API = os.environ.get("KINOPUB_API", "https://api.srvkp.com")
 SITE = "https://kino.watch"
@@ -118,7 +118,7 @@ class Client:
             "client_id": CLIENT_ID, "client_secret": CLIENT_SECRET})
         if st != 200 or "access_token" not in resp:
             raise KPError("refresh не удался, нужен новый вход: `run login start`", 3,
-                          status=st, error=resp.get("error"))
+                          status=st, api_error=resp.get("error"))
         self._save_tokens(resp)
         return resp["access_token"]
 
@@ -147,7 +147,7 @@ class Client:
         st, resp = self.transport("POST", f"{API}/oauth2/device", {
             "grant_type": "device_code", "client_id": CLIENT_ID, "client_secret": CLIENT_SECRET})
         if st != 200 or "code" not in resp:
-            raise KPError("не удалось получить код устройства", 1, status=st, error=resp.get("error"))
+            raise KPError("не удалось получить код устройства", 1, status=st, api_error=resp.get("error"))
         STATE_DIR.mkdir(parents=True, exist_ok=True)
         state = {"code": resp["code"], "interval": int(resp.get("interval", 5)),
                  "expires_at": int(self.now()) + int(resp.get("expires_in", 300))}
@@ -385,7 +385,7 @@ def main(argv=None):
     try:
         out = run(args, Client(Keychain()))
     except KPError as e:
-        print(json.dumps({"error": str(e), **e.extra}, ensure_ascii=False), file=sys.stderr)
+        print(json.dumps({**e.extra, "error": str(e)}, ensure_ascii=False), file=sys.stderr)
         return e.code
     print(json.dumps(out, ensure_ascii=False, indent=1))
     return 0

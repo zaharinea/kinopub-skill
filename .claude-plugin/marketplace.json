@@ -10,7 +10,7 @@
       "name": "kinopub",
       "source": "./plugins/kinopub",
       "description": "Закладки Кинопаба через API v1: папки, добавить, убрать или перенести фильм, поиск, «Буду смотреть». Вход по коду на kino.watch/device.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "category": "productivity"
     }
   ]
