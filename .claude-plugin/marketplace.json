@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "kinopub-skill",
+  "description": "Неофициальный скилл для закладок Кинопаба (kino.watch, kino.pub): папки, добавить, убрать или перенести фильм, поиск, «Буду смотреть».",
+  "owner": {
+    "name": "zaharinea"
+  },
+  "plugins": [
+    {
+      "name": "kinopub",
+      "source": "./plugins/kinopub",
+      "description": "Закладки Кинопаба через API v1: папки, добавить, убрать или перенести фильм, поиск, «Буду смотреть». Вход по коду на kino.watch/device.",
+      "version": "0.1.0",
+      "category": "productivity"
+    }
+  ]
+}

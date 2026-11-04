@@ -1,0 +1,20 @@
+{
+  "name": "kinopub-skill",
+  "interface": {
+    "displayName": "Кинопаб: закладки"
+  },
+  "plugins": [
+    {
+      "name": "kinopub",
+      "source": {
+        "source": "local",
+        "path": "./plugins/kinopub"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

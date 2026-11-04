@@ -1,0 +1,27 @@
+{
+  "name": "kinopub",
+  "version": "0.1.0",
+  "description": "Неофициальный скилл для закладок Кинопаба (kino.watch, kino.pub) через API v1: папки, добавить, убрать или перенести фильм, поиск, «Буду смотреть». Вход по коду на kino.watch/device.",
+  "author": {
+    "name": "zaharinea",
+    "url": "https://github.com/zaharinea"
+  },
+  "homepage": "https://github.com/zaharinea/kinopub-skill",
+  "repository": "https://github.com/zaharinea/kinopub-skill",
+  "license": "MIT",
+  "keywords": ["kinopub", "kino.pub", "kino.watch", "bookmarks", "movies"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Кинопаб: закладки",
+    "shortDescription": "Закладки, поиск и «Буду смотреть» на Кинопабе",
+    "longDescription": "Управляет закладками Кинопаба (kino.watch, kino.pub): показывает папки и фильмы в них, добавляет, убирает и переносит фильмы, ищет по названию, ведёт список «Буду смотреть». Вход как ТВ-устройство по коду на kino.watch/device.",
+    "developerName": "zaharinea",
+    "category": "Productivity",
+    "capabilities": [],
+    "defaultPrompt": [
+      "Добавь «Дюну» 2021 года в закладки на Кинопабе.",
+      "Что лежит у меня в закладках Кинопаба?",
+      "Перенеси фильм из одной папки закладок в другую."
+    ]
+  }
+}

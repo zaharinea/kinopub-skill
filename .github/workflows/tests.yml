@@ -1,0 +1,15 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv run --python 3.12 --with 'keyring>=24,<26' python -m unittest discover -s tests -v
+      - run: for f in .claude-plugin/marketplace.json .agents/plugins/marketplace.json plugins/kinopub/.claude-plugin/plugin.json plugins/kinopub/.codex-plugin/plugin.json; do python3 -m json.tool "$f" >/dev/null || exit 1; done

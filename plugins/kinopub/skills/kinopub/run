@@ -1,0 +1,5 @@
+#!/bin/sh
+# Запуск из любой папки: run folders | run search 'дюна' | run add <фильм> <папка> …
+# Нужен uv (https://docs.astral.sh/uv/); зависимости он ставит сам.
+here=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+exec uv run -q "$here/scripts/kinopub.py" "$@"
